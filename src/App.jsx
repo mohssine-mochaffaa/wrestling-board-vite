@@ -28,7 +28,7 @@ function App() {
   const [displaying,setDisplaying] = useState("none")
   const [displayCounter,setDisplayCounter] = useState("none");
   const [displayCounter2,setDisplayCounter2] = useState("none");
-  const [direction,setDirection] = useState(false)
+  const [direction,setDirection] = useState(true)
   const [name,setName] = useState("")
   const [password,setPassword] = useState("")
   const [nameInp,setNameInp] = useState()
@@ -529,7 +529,6 @@ const [time,setTime] = useState(1000);
         await updateDoc(updatedDoc, {
           reference: true,
         }).then(()=>{
-          console.log("dzt")
           setAlert("none");
           stop();
         })
