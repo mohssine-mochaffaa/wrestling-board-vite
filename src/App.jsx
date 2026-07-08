@@ -41,6 +41,8 @@ function App() {
   const [eqpR,setEqpR] = useState("");
   const [eqpB,setEqpB] = useState("");
 
+  const [endCounter,setEndCounter] = useState(false)
+
 
 // kist3lm 3la lw9t dyl cadet / junior / senior wch 4min ola 6min
   useEffect(()=>{
@@ -330,6 +332,7 @@ const [s,setS] = useState(1)
       setRedPoint(0)
       setAvCounter2(0)
       setAvCounter(0)
+      setEndCounter(false);
       setS(1)
       setNumI(numInitial)
       setTr(0)
@@ -455,6 +458,7 @@ const [time,setTime] = useState(1000);
         setRr(0)
       }
     }
+
     useEffect(()=>{
       if (winner === 2) {
         pickWinner()
@@ -535,6 +539,13 @@ const [time,setTime] = useState(1000);
   }
   const [alert,setAlert] = useState("none");
   const [alert2,setAlert2] = useState("none");
+
+
+  useEffect(()=>{
+    if (endCounter) {
+      pickWinner();
+    }
+  },[endCounter])
   
   return ( 
     <div className="App">
@@ -564,7 +575,7 @@ const [time,setTime] = useState(1000);
           <option value="">Round 3</option>
           <option value="">Round 4</option>
           <option value="">Round 5</option>
-          <option value="">Repecharge</option>
+          <option value="">Repechage</option>
           <option value="">Qualification</option>
           <option value="">1/16 Final</option>
           <option value="">1/8 Final</option>
@@ -598,7 +609,7 @@ const [time,setTime] = useState(1000);
             <h1 style={{color:pointTheme3,fontSize:"230px",fontFamily:"sans-serif"}}>{redPoint}</h1>
           </div>
           <div className="time">
-          <h2 style={{transition:"1s"}}><Counter ref1={ref1} ref2={ref2} timeOn={timeOn} start={start} stop={stop} reset={re} setReset={setRe} plus={handlePlus} mine={handleMine}/></h2>
+          <h2 style={{transition:"1s"}}><Counter ref1={ref1} ref2={ref2} timeOn={timeOn} start={start} stop={stop} reset={re} setReset={setRe} plus={handlePlus} mine={handleMine} endCounter={endCounter} setEndCounter={setEndCounter} /></h2>
           </div>
           <div style={{background:pointTheme2}} className="blue">
             <h1 style={{color:pointTheme4,fontSize:"230px",fontFamily:"sans-serif"}}>{bluePoint}</h1>

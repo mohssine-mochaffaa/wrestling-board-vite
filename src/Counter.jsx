@@ -10,7 +10,8 @@ const Counter = (props) => {
     const [stoping,setStoping] = useState(0);
     const [onStart,setOnStart] = useState(false)
     const [begin,setBegin] = useState(0)
-    const [begin2,setBegin2] = useState(0)
+    const [begin2,setBegin2] = useState(0);
+    const [round2,setRound2] = useState(false);
     const [play] = useSound(voice)
 
 
@@ -54,6 +55,7 @@ const Counter = (props) => {
     const reset = ()=>{
         setSecond(0)
         setSecond2(0)
+        setRound2(false)
         setMin(props.ref1);
         setStoping(props.ref2)
         setBegin(0)
@@ -73,6 +75,7 @@ const Counter = (props) => {
         if (props.reset) {
         setSecond(0)
         setSecond2(0)
+        setRound2(false)
         setMin(props.ref1);
         setStoping(props.ref2)
         setBegin(0)
@@ -126,6 +129,7 @@ const Counter = (props) => {
             setBegin2(1)
         }
     },[begin,second,second2,min]);
+
     useEffect(()=>{
         if (begin2 == 1) {
             setMin(stoping);
@@ -133,11 +137,19 @@ const Counter = (props) => {
             setSecond2(0)
         }
     },[begin2]);
+
     useEffect(()=>{
         if (begin2 == 1 && second == 0 && second2 == 0 && min == 0) {
             props.stop();
+            setRound2(true)
         }
-    },[min,second,second2,begin2])
+    },[min,second,second2,begin2]);
+
+    useEffect(()=>{
+        if (begin2 == 1 && second == 0 && second2 == 0 && min == 0 && round2) {
+            props.setEndCounter(true);
+        }
+    },[min,second,second2,begin2,round2]);
 
   return (
     <div style={{color:"white"}}>
